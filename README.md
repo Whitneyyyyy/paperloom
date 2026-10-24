@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>让散落的论文，成为相互关联的研究资料。</strong><br>
+  <strong>把散落的论文，编织成一张知识网</strong><br>
   整理论文 · 探索关系 · 阅读高亮 · 选段翻译
 </p>
 

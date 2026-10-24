@@ -1,6 +1,6 @@
 <p align="center"><img src="docs/assets/hero.svg" alt="Paperloom — Your papers. Connected." width="100%"></p>
 
-<p align="center"><strong>A local-first research library for papers, connections and reading notes.</strong><br>Organize your papers. Explore their relationships. Keep your ideas close.</p>
+<p align="center"><strong>Weave scattered papers into a web of knowledge.</strong><br>Organize your papers. Explore their relationships. Keep your ideas close.</p>
 
 <p align="center">
  <a href="LICENSE"><img alt="MIT license" src="docs/assets/badge-license.svg"></a>
