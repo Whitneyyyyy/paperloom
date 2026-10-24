@@ -1,0 +1,16 @@
+name: Feature idea / 功能建议
+description: Describe a research workflow you would like to improve.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: What are you trying to do? / 你希望完成什么工作？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 建议的行为
+    validations:
+      required: true

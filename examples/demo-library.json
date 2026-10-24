@@ -1,0 +1,59 @@
+[
+  {
+    "id": "demo-facade",
+    "title": "Learning to segment facade cracks",
+    "categoryId": "engineering",
+    "tags": ["Crack segmentation", "Building inspection", "UAV imagery"],
+    "abstract": "This synthetic example connects image segmentation, building inspection and UAV imagery. It illustrates how pixel-level masks and domain knowledge can support the interpretation of visible facade cracks. The record is created only to demonstrate Paperloom's interface.",
+    "note": "重点对照：分割模型如何对应到实际缺陷类别。演示笔记，不代表研究结论。"
+  },
+  {
+    "id": "demo-vision",
+    "title": "Vision-language models for building inspection",
+    "categoryId": "computing",
+    "tags": ["Vision language models", "Building inspection", "Domain knowledge"],
+    "abstract": "A synthetic demonstration of combining image segmentation and vision language models for building defect inspection. Domain knowledge helps compare visual evidence and textual descriptions. This is an illustrative record, not a published study."
+  },
+  {
+    "id": "demo-uav",
+    "title": "UAV imagery for structural condition assessment",
+    "categoryId": "engineering",
+    "tags": ["UAV imagery", "Crack segmentation", "Building inspection"],
+    "abstract": "This illustrative record concerns UAV imagery, crack segmentation and building inspection. It is included to show a related methods branch in the graph. The synthetic document does not report empirical results."
+  },
+  {
+    "id": "demo-heat",
+    "title": "Mapping urban heat with satellite observations",
+    "categoryId": "environment",
+    "tags": ["Urban heat", "Satellite imagery", "Heat exposure"],
+    "abstract": "An illustrative record connecting satellite imagery, urban heat and heat exposure. It relates environmental measurements to human mobility and urban vegetation. The document is synthetic and contains no research findings."
+  },
+  {
+    "id": "demo-trees",
+    "title": "Tree cover and neighborhood cooling",
+    "categoryId": "cities",
+    "tags": ["Urban cooling", "Green infrastructure", "Satellite imagery"],
+    "abstract": "This synthetic record uses urban vegetation, green infrastructure and satellite imagery to illustrate a connection between urban cooling and environmental observation. It is a demonstration document rather than a published paper."
+  },
+  {
+    "id": "demo-mobility",
+    "title": "Human mobility and outdoor heat exposure",
+    "categoryId": "cities",
+    "tags": ["Human mobility", "Heat exposure", "Urban heat"],
+    "abstract": "An illustrative record about human mobility, urban heat and heat exposure. Satellite imagery and environmental observations provide related concepts for exploring cross-category links. No measurements or findings are claimed."
+  },
+  {
+    "id": "demo-vegetation",
+    "title": "Satellite time series for urban vegetation",
+    "categoryId": "environment",
+    "tags": ["Satellite imagery", "Green infrastructure", "Urban cooling"],
+    "abstract": "A synthetic example of satellite imagery and green infrastructure mapping. It connects the observation of urban vegetation with urban cooling questions. This record is designed for a software demonstration."
+  },
+  {
+    "id": "demo-protein",
+    "title": "Protein sequence alignment for structure prediction",
+    "categoryId": "life",
+    "tags": ["Protein sequence", "Sequence alignment"],
+    "abstract": "A synthetic example concerning protein sequence alignment and structure prediction. It has no intended relationship to the building inspection or urban environment examples and should remain an isolated node."
+  }
+]

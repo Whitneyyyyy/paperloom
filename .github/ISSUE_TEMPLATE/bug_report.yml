@@ -1,0 +1,24 @@
+name: Bug report / 问题反馈
+description: Report a reproducible problem without sharing private papers or credentials.
+labels: [bug]
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      description: Prefer the synthetic demo. Remove personal information from screenshots and logs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior / 预期与实际表现
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / 环境
+      placeholder: OS, Node.js version, browser and version
+    validations:
+      required: true

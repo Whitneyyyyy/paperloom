@@ -1,0 +1,927 @@
+.reading-paper .app-shell {
+  visibility: hidden;
+}
+.pdf-reader {
+  position: fixed;
+  inset: 0;
+  z-index: 75;
+  background: #f3f3f1;
+  color: #303438;
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+}
+.reader-header {
+  height: 76px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 22px;
+  border-bottom: 1px solid #e0e2e2;
+  background: #fff;
+}
+.reader-title {
+  flex: 1;
+  min-width: 0;
+}
+.reader-title small {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #92989c;
+}
+.reader-title h1 {
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 550;
+  margin: 3px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+}
+.reader-header .button {
+  font-size: 11px;
+  min-height: 32px;
+  padding: 7px 10px;
+}
+.reader-header #reader-save-status {
+  font-size: 10px;
+  color: #8a9196;
+  max-width: 210px;
+  line-height: 1.7;
+}
+.reader-toolbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 51px;
+  background: #fdfdfc;
+  border-bottom: 1px solid #dedfdd;
+  padding: 9px 23px;
+  flex-wrap: wrap;
+}
+.reader-pages-control,
+.reader-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6e777e;
+  font-size: 10px;
+}
+.reader-pages-control > button,
+.reader-zoom-controls > button {
+  padding: 2px 7px;
+  color: #56636c;
+}
+.reader-pages-control > button {
+  font-size: 19px;
+}
+.reader-pages-control input {
+  width: 38px;
+  text-align: center;
+  border: 1px solid #d9dcde;
+  border-radius: 3px;
+  padding: 3px;
+  background: #fff;
+  color: #4b565e;
+  font-size: 11px;
+  -moz-appearance: textfield;
+}
+.reader-pages-control input::-webkit-inner-spin-button {
+  display: none;
+}
+.reader-zoom-controls #reader-minus,
+.reader-zoom-controls #reader-plus {
+  font-size: 17px;
+}
+.reader-zoom-controls #reader-fit {
+  font-size: 10px;
+}
+.reader-toolbar-divider {
+  width: 1px;
+  height: 19px;
+  background: #ddd;
+}
+.reader-palette,
+.annotation-palette {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.highlight-color {
+  width: 27px;
+  height: 27px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  padding: 4px;
+  display: grid;
+  place-items: center;
+}
+.highlight-color i {
+  width: 17px;
+  height: 17px;
+  background: var(--fill);
+  border: 1px solid var(--swatch);
+  border-radius: 50%;
+}
+.highlight-color.active {
+  border-color: #7e8a92;
+  background: #fff;
+}
+.highlight-color:hover {
+  background: #fff;
+}
+.reader-toolbar #reader-area {
+  font-size: 10px;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-color: #d6dbde;
+  color: #66717a;
+}
+.reader-toolbar #reader-area[aria-pressed='true'] {
+  border-color: #758c9c;
+  background: #eaf0f4;
+  color: #3f5a6d;
+}
+.reader-tip {
+  font-size: 10px;
+  color: #9b9fa1;
+  margin-left: auto;
+}
+.reader-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+.reader-document {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 25px 24px 60px;
+  overflow: auto;
+  scrollbar-width: thin;
+  background: #eceeeb;
+  overscroll-behavior: contain;
+}
+.pdf-page {
+  position: relative;
+  margin: 0 auto 24px;
+  background: white;
+  box-shadow: 0 2px 13px #192d3912;
+  isolation: isolate;
+  overflow: hidden;
+  scroll-margin-top: 22px;
+  flex: none;
+}
+.pdf-page canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.pdf-page .textLayer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  line-height: 1;
+  text-align: initial;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  z-index: 2;
+  transform-origin: 0 0;
+  caret-color: CanvasText;
+}
+.textLayer :is(span, br) {
+  position: absolute;
+  color: transparent;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0 0;
+  margin: 0;
+  padding: 0;
+}
+.textLayer > span,
+.textLayer .markedContent > span {
+  font-size: calc(var(--total-scale-factor) * var(--font-height));
+  transform: rotate(var(--rotate, 0deg)) scaleX(var(--scale-x, 1));
+}
+.textLayer .markedContent {
+  display: contents;
+}
+.textLayer ::selection {
+  background: rgba(79, 132, 196, 0.32);
+  color: transparent;
+}
+.pdf-page .reader-marks {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.reader-mark {
+  position: absolute;
+  border-radius: 2px;
+  border: 0;
+  min-height: 1px;
+  pointer-events: auto;
+  padding: 0;
+  cursor: pointer;
+}
+.reader-mark.selected {
+  outline: 1px dashed #687986;
+  outline-offset: 1px;
+}
+.reader-mark:hover {
+  outline: 1px solid #9aabb5;
+}
+.area-mode .pdf-page {
+  cursor: crosshair;
+  touch-action: none;
+}
+.area-mode .textLayer,
+.area-mode .reader-marks {
+  pointer-events: none;
+}
+.area-mode .textLayer *,
+.area-mode .reader-mark {
+  pointer-events: none !important;
+  user-select: none;
+}
+.area-draft {
+  position: absolute;
+  z-index: 4;
+  outline: 1px dashed #738c9b;
+  pointer-events: none;
+}
+.scanned-page-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  padding: 4px 7px;
+  background: #ffffffdb;
+  color: #8d969b;
+  font-size: 9px;
+  z-index: 5;
+}
+.page-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #b3b9b9;
+  font-size: 12px;
+  background: #fefefd;
+}
+.reader-loading {
+  color: #8a949a;
+  text-align: center;
+  padding: 80px 30px;
+  font-size: 13px;
+  line-height: 2;
+}
+.reader-error strong {
+  font-size: 17px;
+  color: #5d6972;
+  font-weight: 500;
+}
+.reader-error p {
+  font-size: 12px;
+  max-width: 500px;
+  margin: 10px auto 22px;
+}
+.reader-sidebar {
+  width: 310px;
+  flex: 0 0 310px;
+  overflow: auto;
+  background: #fff;
+  border-left: 1px solid #dfe2e2;
+  padding: 20px 20px 30px;
+  scrollbar-width: thin;
+}
+.reader-sidebar-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.reader-sidebar-heading strong {
+  font-size: 13px;
+  color: #3b464d;
+  font-weight: 550;
+}
+.reader-sidebar-heading > span {
+  font-size: 10px;
+  color: #9ca3a7;
+}
+.reader-empty-notes {
+  font-size: 11px;
+  line-height: 1.95;
+  color: #9aa2a7;
+  margin: 22px 0 30px;
+}
+.annotation-card {
+  display: block;
+  text-align: left;
+  width: 100%;
+  border-left: 3px solid var(--annotation-color);
+  padding: 9px 11px;
+  margin-bottom: 13px;
+  background: #f8f9f8;
+  border-radius: 0 3px 3px 0;
+}
+.annotation-card small {
+  font-size: 9px;
+  color: #9aa3a9;
+}
+.annotation-card p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #67757e;
+  margin: 6px 0;
+  overflow-wrap: anywhere;
+}
+.annotation-card > span {
+  display: block;
+  font-size: 11px;
+  line-height: 1.9;
+  color: #45535d;
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #e8ebed;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.annotation-card.active {
+  background: #edf1f3;
+}
+.reader-general-note {
+  border-top: 1px solid #e5e8e9;
+  margin-top: 25px;
+  padding-top: 18px;
+}
+.reader-general-note label {
+  display: block;
+  font-size: 11px;
+  color: #66747d;
+  margin-bottom: 10px;
+}
+.reader-general-note textarea,
+.annotation-editor textarea {
+  border: 1px solid #dce2e6;
+  border-radius: 4px;
+  background: #fefefe;
+  color: #475864;
+  font-size: 12px;
+  line-height: 1.9;
+  resize: vertical;
+  padding: 10px;
+  width: 100%;
+  min-height: 135px;
+}
+.reader-general-note small {
+  font-size: 9px;
+  color: #a2aab0;
+  display: block;
+  margin-top: 8px;
+}
+.annotation-editor {
+  border: 1px solid #d9e1e6;
+  background: #fcfdfd;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+.annotation-editor-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #71828e;
+}
+.annotation-editor-heading strong {
+  font-weight: 500;
+}
+.annotation-editor-heading button {
+  font-size: 18px;
+  color: #9ba5ad;
+  padding: 0 3px;
+}
+.annotation-editor blockquote {
+  margin: 11px 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #7b8992;
+  max-height: 130px;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.annotation-area-label {
+  font-size: 10px;
+  color: #99a3aa;
+}
+.annotation-editor textarea {
+  min-height: 115px;
+  margin-top: 9px;
+}
+.annotation-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  margin-top: 9px;
+}
+.annotation-actions > button:first-child {
+  font-size: 10px;
+  color: #9aa3aa;
+  padding: 0;
+}
+.annotation-actions .button {
+  min-height: 29px;
+  font-size: 10px;
+  padding: 5px 9px;
+}
+.annotation-undo {
+  font-size: 10px;
+  color: #8a969e;
+  background: #f1f5f6;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+.annotation-undo button {
+  font-size: 10px;
+  text-decoration: underline;
+  color: #5b778a;
+}
+.selection-toolbar {
+  position: fixed;
+  z-index: 85;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #d2dbdf;
+  box-shadow: 0 4px 17px #142a3a18;
+  border-radius: 5px;
+  padding: 8px 10px;
+  max-width: calc(100vw - 24px);
+  color: #626f78;
+  font-size: 10px;
+}
+.selection-toolbar > span {
+  font-size: 9px;
+  color: #a1aab0;
+}
+.selection-toolbar button {
+  font-size: 10px;
+  white-space: nowrap;
+  padding: 4px 7px;
+  border-radius: 3px;
+}
+.selection-toolbar #selection-note {
+  background: #253b4a;
+  color: white;
+}
+.selection-toolbar #selection-cancel {
+  font-size: 14px;
+  padding: 1px 4px;
+  color: #9da8b0;
+}
+.pdf-reader.notes-hidden .reader-sidebar {
+  display: none;
+}
+.hiddenCanvasElement {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (max-width: 1000px) {
+  .reader-header {
+    gap: 10px;
+    padding: 10px 15px;
+  }
+  .reader-header #reader-save-status {
+    font-size: 9px;
+    max-width: 140px;
+  }
+  .reader-toolbar {
+    gap: 10px;
+    padding: 8px 15px;
+  }
+  .reader-tip {
+    display: none;
+  }
+  .reader-sidebar {
+    width: 270px;
+    flex-basis: 270px;
+    padding: 17px;
+  }
+  .reader-document {
+    padding: 20px 15px 55px;
+  }
+  .reader-title h1 {
+    font-size: 12px;
+  }
+}
+@media (max-width: 680px) {
+  .reader-header {
+    height: auto;
+    min-height: 87px;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 9px 10px;
+  }
+  .reader-title {
+    order: 4;
+    flex-basis: 100%;
+    margin-top: 2px;
+  }
+  .reader-title small {
+    display: none;
+  }
+  .reader-title h1 {
+    font-size: 11px;
+    max-width: calc(100vw - 22px);
+  }
+  .reader-header .button {
+    font-size: 9px;
+    min-height: 27px;
+    padding: 5px 8px;
+  }
+  .reader-header #reader-save-status {
+    flex: 1;
+    max-width: none;
+    text-align: right;
+    font-size: 8px;
+  }
+  .reader-header #reader-download {
+    display: none;
+  }
+  .reader-toolbar {
+    padding: 6px 10px;
+    gap: 7px 12px;
+  }
+  .reader-toolbar-divider {
+    display: none;
+  }
+  .reader-pages-control,
+  .reader-zoom-controls {
+    font-size: 9px;
+    gap: 4px;
+  }
+  .reader-palette {
+    gap: 3px;
+  }
+  .highlight-color {
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+  }
+  .highlight-color i {
+    width: 16px;
+    height: 16px;
+  }
+  .reader-toolbar #reader-area {
+    min-height: 24px;
+    font-size: 9px;
+  }
+  .reader-document {
+    padding: 12px 8px 45px;
+  }
+  .reader-sidebar {
+    position: absolute;
+    z-index: 20;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: min(300px, 86vw);
+    box-shadow: -8px 0 25px #19303e14;
+  }
+  .reader-body {
+    position: relative;
+  }
+  .reader-sidebar-heading {
+    margin-bottom: 16px;
+  }
+  .pdf-page {
+    margin-bottom: 15px;
+  }
+  .scanned-page-hint {
+    font-size: 7px;
+    bottom: 8px;
+    left: 8px;
+  }
+  .selection-toolbar {
+    gap: 4px;
+    padding: 7px;
+  }
+  .selection-toolbar > span {
+    display: none;
+  }
+}
+/* Compact highlight cards: editors appear only when requested. */
+.reader-sidebar-heading {
+  margin-bottom: 15px;
+}
+.annotation-card {
+  padding: 0;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: #f7f8f7;
+}
+.annotation-quote {
+  display: block;
+  width: 100%;
+  padding: 10px 11px;
+  text-align: left;
+}
+.annotation-quote > p {
+  margin: 6px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.annotation-card.active .annotation-quote > p {
+  display: block;
+  max-height: 165px;
+  overflow: auto;
+}
+.annotation-saved-note {
+  border-top: 1px solid #e4e8e9;
+  padding: 9px 11px !important;
+  margin: 0 !important;
+  white-space: pre-wrap;
+  max-height: 170px;
+  overflow: auto;
+  color: #46535b !important;
+}
+.annotation-card-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid #e1e6e8;
+  padding: 6px 9px 0;
+}
+.annotation-card-tools .annotation-palette {
+  gap: 1px;
+  flex: 1;
+}
+.annotation-card-tools .highlight-color {
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+}
+.annotation-card-tools .highlight-color i {
+  width: 15px;
+  height: 15px;
+}
+.annotation-card-tools > button {
+  font-size: 9px;
+  color: #969fa4;
+  padding: 4px;
+}
+.annotation-card-tools #annotation-close {
+  font-size: 16px;
+}
+.annotation-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 7px 12px 10px;
+}
+.annotation-quick-actions button {
+  font-size: 10px;
+  color: #64747e;
+  padding: 0;
+}
+.annotation-inline-editor {
+  padding: 8px 10px 10px;
+}
+.annotation-inline-editor textarea {
+  display: block;
+  width: 100%;
+  min-height: 84px;
+  max-height: 260px;
+  resize: vertical;
+  border: 1px solid #d6dee2;
+  border-radius: 4px;
+  background: #fff;
+  color: #485963;
+  padding: 8px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.annotation-inline-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 7px;
+}
+.annotation-inline-actions small {
+  font-size: 9px;
+  color: #a1a8ac;
+}
+.annotation-inline-actions button {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: #303b42;
+  color: #fff;
+}
+.reader-general-note {
+  margin-top: 20px;
+  padding-top: 13px;
+}
+.reader-general-note summary {
+  cursor: pointer;
+  font-size: 11px;
+  color: #75818a;
+  padding: 3px 0 10px;
+}
+.reader-general-note textarea {
+  min-height: 105px;
+}
+.reader-toolbar #reader-find-toggle {
+  font-size: 10px;
+  min-height: 28px;
+  padding: 4px 9px;
+}
+.reader-findbar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: none;
+  padding: 9px 22px;
+  background: #fff;
+  border-bottom: 1px solid #dfe2e2;
+}
+.reader-findbar input {
+  font-size: 12px;
+  flex: 1;
+  min-width: 80px;
+  max-width: 430px;
+  border: 1px solid #d8dddf;
+  border-radius: 4px;
+  padding: 6px 9px;
+  background: #fafbfa;
+  color: #45535b;
+}
+#reader-find-count {
+  font-size: 10px;
+  color: #929da4;
+  min-width: 74px;
+}
+.reader-findbar > button {
+  font-size: 16px;
+  color: #7b8992;
+  padding: 2px 7px;
+}
+.reader-search-marks {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.reader-search-hit {
+  position: absolute;
+  background: rgba(244, 199, 66, 0.34);
+  border-radius: 2px;
+}
+.reader-search-hit.active {
+  background: rgba(239, 157, 46, 0.48);
+  outline: 1px solid #c98c35;
+  outline-offset: 1px;
+}
+.selection-toolbar #selection-translate {
+  color: #4f6573;
+  background: #eef2f4;
+}
+.reader-translation {
+  border: 1px solid #dfe4e6;
+  border-radius: 5px;
+  padding: 11px;
+  margin-bottom: 17px;
+  background: #fcfdfc;
+}
+.translation-heading {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.translation-heading strong {
+  font-size: 12px;
+  font-weight: 550;
+  flex: 1;
+  color: #4d5c65;
+}
+.translation-heading select {
+  font-size: 10px;
+  border: 1px solid #dce1e3;
+  border-radius: 3px;
+  padding: 2px 4px;
+  background: #fff;
+  color: #74828a;
+}
+.translation-heading button {
+  font-size: 17px;
+  color: #98a2a8;
+  padding: 0 2px;
+}
+.translation-source {
+  font-size: 10px;
+  color: #9aa3a9;
+  margin-bottom: 8px;
+}
+.translation-source summary {
+  cursor: pointer;
+}
+.translation-source p {
+  font-size: 11px;
+  line-height: 1.8;
+  max-height: 135px;
+  overflow: auto;
+  margin: 7px 0;
+  color: #83919a;
+}
+.translation-result {
+  font-size: 12px;
+  line-height: 1.95;
+  color: #46565f;
+  max-height: 37svh;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 3px 0;
+}
+.translation-error {
+  color: #8b6b50;
+  font-size: 11px;
+}
+.translation-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid #eceeef;
+}
+.translation-footer small {
+  font-size: 8px;
+  color: #a7afb4;
+}
+.translation-footer button {
+  font-size: 10px;
+  color: #72828c;
+  padding: 0;
+}
+.translation-progress {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 37px);
+  height: 5px;
+  accent-color: #46565f;
+  margin: 8px 0;
+}
+.translation-progress-label {
+  display: inline-block;
+  width: 32px;
+  text-align: right;
+  font-size: 9px;
+  color: #83919a;
+}
+@media (max-width: 680px) {
+  .reader-toolbar #reader-find-toggle {
+    font-size: 9px;
+    min-height: 24px;
+    padding: 3px 7px;
+  }
+  .reader-findbar {
+    gap: 4px;
+    padding: 7px 10px;
+  }
+  .reader-findbar input {
+    font-size: 11px;
+    padding: 5px 7px;
+  }
+  .reader-findbar > button {
+    padding: 2px 5px;
+  }
+  .reader-findbar #reader-find-count {
+    font-size: 8px;
+    min-width: 50px;
+    max-width: 94px;
+  }
+  .annotation-card-tools .annotation-palette {
+    gap: 3px;
+  }
+}
