@@ -1,6 +1,6 @@
-<p align="center"><img src="docs/assets/hero.svg" alt="Paperloom — Papers and notes. In one place." width="100%"></p>
+<p align="center"><img src="docs/assets/hero.svg" alt="Paperloom — Your papers. Connected." width="100%"></p>
 
-<p align="center"><strong>Keep your papers and reading notes together.</strong><br>Organize your library, explore connections, and capture ideas as you read.</p>
+<p align="center"><strong>A local-first research library for papers, connections and reading notes.</strong><br>Organize your papers. Explore their relationships. Keep your ideas close.</p>
 
 <p align="center">
  <a href="LICENSE"><img alt="MIT license" src="docs/assets/badge-license.svg"></a>
@@ -17,7 +17,7 @@
 
 Built for literature reviews, research projects and the everyday work of finding a paper you remember reading.
 
-<p align="center"><img src="docs/assets/graph.jpg" alt="Paperloom research graph, with category colors and isolated papers" width="100%"><br><sub>Real application screenshots. All papers, authors and notes shown are synthetic demonstration content.</sub></p>
+<p align="center"><img src="docs/assets/graph.png" alt="Paperloom research graph, with category colors and isolated papers" width="100%"><br><sub>The graph and library screenshots show the hosted edition. This repository ships a local, single-user edition that stores your library on your computer.</sub></p>
 
 ## Features
 
@@ -30,7 +30,7 @@ Built for literature reviews, research projects and the everyday work of finding
 | **Search & translate**  | Full-document text search with page navigation; Chinese–English passage translation on supported desktop browsers, on-device, without a translation API key              |
 | **Keep your work**      | SQLite metadata and notes, PDF files on disk, automatic saving, version conflict checks, recoverable trash and full backup export/import                                 |
 
-<table><tr><td width="50%"><img src="docs/assets/library.jpg" alt="Paper library list and publication information"><br><strong>Find a paper</strong><br><sub>Categories, publication details and reading activity.</sub></td><td width="50%"><img src="docs/assets/reader.jpg" alt="PDF reader, highlights, notes and translation"><br><strong>Keep an idea</strong><br><sub>Lightweight highlights, with notes when you need them.</sub></td></tr></table>
+<table><tr><td width="50%"><img src="docs/assets/library.png" alt="Paper library list and publication information"><br><strong>Find a paper</strong><br><sub>Categories, publication details and reading activity.</sub></td><td width="50%"><img src="docs/assets/reader.jpg" alt="PDF reader, highlights, notes and translation"><br><strong>Keep an idea</strong><br><sub>Lightweight highlights, with notes when you need them.</sub></td></tr></table>
 
 ## Quick start
 

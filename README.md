@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/assets/hero.svg" alt="Paperloom — Papers and notes. In one place." width="100%">
+  <img src="docs/assets/hero.svg" alt="Paperloom — Your papers. Connected." width="100%">
 </p>
 
 <p align="center">
-  <strong>把论文和阅读笔记，整理在一起。</strong><br>
-  整理论文，发现关联，记下想法。
+  <strong>让散落的论文，成为相互关联的研究资料。</strong><br>
+  整理论文 · 探索关系 · 阅读高亮 · 选段翻译
 </p>
 
 <p align="center">
@@ -26,8 +26,8 @@
 适合正在做文献综述、整理研究方向，或希望把“下载过的论文”变成“用得上的资料”的人。
 
 <p align="center">
-  <img src="docs/assets/graph.jpg" alt="Paperloom 论文图谱：类别配色、关联节点与独立论文" width="100%"><br>
-  <sub>实际运行界面。截图中的论文、作者与笔记均为合成演示内容，不代表真实发表论文。</sub>
+  <img src="docs/assets/graph.png" alt="Paperloom 论文图谱：类别配色、关联节点与独立论文" width="100%"><br>
+  <sub>图谱与列表截图来自在线版；本仓库提供本机单人版本，资料保存在当前电脑。</sub>
 </p>
 
 ## 为什么做 Paperloom
@@ -49,7 +49,7 @@ Paperloom 把三个步骤放到一起：**整理好、连起来、读进去。**
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/assets/library.jpg" alt="论文列表与出版信息"><br><strong>查找一篇论文</strong><br><sub>分类、作者、期刊、关键词与阅读记录放在一起。</sub></td>
+    <td width="50%"><img src="docs/assets/library.png" alt="论文列表与出版信息"><br><strong>查找一篇论文</strong><br><sub>分类、作者、期刊、关键词与阅读记录放在一起。</sub></td>
     <td width="50%"><img src="docs/assets/reader.jpg" alt="PDF 阅读、高亮与本机翻译"><br><strong>留下一点想法</strong><br><sub>高亮保持轻量，想写笔记时再展开。</sub></td>
   </tr>
 </table>
@@ -133,7 +133,7 @@ data/
 - 浏览器还保留缓存与未完成操作；清除缓存不会删除已写入数据目录的资料。
 - 回收站会保留 PDF 和笔记，方便恢复；移入回收站不会立即释放原文件空间。
 - 推荐通过界面导出完整备份。复制整个数据目录时，请先停止服务。
-- 数据目录、PDF、环境配置与凭据已由 `.gitignore` 排除；公开仓库只包含代码与合成样例。
+- 数据目录、PDF、环境配置与凭据已由 `.gitignore` 排除；公开仓库包含代码、合成样例和界面截图，不含个人论文原文件或运行数据。
 
 ### 有哪些网络请求
 

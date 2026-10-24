@@ -90,8 +90,8 @@ for (const name of [
   'THIRD_PARTY_NOTICES.md',
   '.gitignore',
   'docs/assets/hero.svg',
-  'docs/assets/graph.jpg',
-  'docs/assets/library.jpg',
+  'docs/assets/graph.png',
+  'docs/assets/library.png',
   'docs/assets/reader.jpg',
 ])
   try {
